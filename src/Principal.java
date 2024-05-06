@@ -10,8 +10,6 @@ public class Principal {
     public static void main(String[] args) {
 
         Scanner leitura = new Scanner(System.in);
-        CartaoDeCredito cartaoAmanda = new CartaoDeCredito();
-
         ArrayList<Produto> listadeprodutos = new ArrayList<>();
 
         int opcao = 1;
@@ -21,51 +19,41 @@ public class Principal {
 
         System.out.println(" Digite o limite do cartão : ");
         limite = leitura.nextDouble();
-        cartaoAmanda.setLimite(limite);
+        CartaoDeCredito cartaoAmanda = new CartaoDeCredito(limite);
 
-        while(opcao != 0) {
+        while (opcao != 0) {
 
-            if (opcao == 1) {
+            if(opcao == 1) {
 
                 System.out.println("Digite a descrição da compra:");
+                leitura.nextLine();
                 nome = leitura.nextLine();
-
 
                 System.out.println("Digite o valor da compra:");
                 preco = leitura.nextDouble();
 
                 Produto produto = new Produto(nome, preco);
 
-                cartaoAmanda.comprarNoCredito(produto);
+                boolean compraRealizada = cartaoAmanda.comprarNoCredito(produto);
 
-                 if (cartaoAmanda.isCompraRealizada() == true) {
+                System.out.println("Valor do retorno do comprou : " + compraRealizada);
 
-                     listadeprodutos.add(produto);
+                if (compraRealizada) {
 
-                     System.out.println("Digite 0 para sair ou 1 para continuar: ");
-                     opcao = leitura.nextInt();
+                    listadeprodutos.add(produto);
 
+                    System.out.println("Digite 0 para sair ou 1 para continuar: ");
+                    opcao = leitura.nextInt();
 
-                  } else {
-                     System.out.println("**********************************");
-                     System.out.println("COMPRA(s) REALIZADA(s) :");
-                     listadeprodutos.sort(Comparator.comparing(Produto::getPreco));
-                     System.out.println(listadeprodutos);
-                     System.out.println("***********************************");
-                     System.out.println("Saldo do cartão:" + cartaoAmanda.getSaldo());
-
-                 }
-
-
+                } else {
+                    opcao = 0;
+                }
             }
             else{
                 System.out.println("Opção inválida! Digite uma opção válida : ");
                 opcao = leitura.nextInt();
-
             }
         }
-
-
         System.out.println("**********************************");
         System.out.println("COMPRA(s) REALIZADA(s) :");
         listadeprodutos.sort(Comparator.comparing(Produto::getPreco));

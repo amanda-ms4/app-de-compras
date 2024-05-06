@@ -1,47 +1,32 @@
 package modelos;
-
 public class CartaoDeCredito {
 
     private double limite;
     private double saldo;
-    private boolean compraRealizada;
-
-    public CartaoDeCredito() {
-    }
-
     public CartaoDeCredito(double limite) {
         this.limite = limite;
-    }
-
-    public boolean isCompraRealizada() {
-        return compraRealizada;
+        this.saldo = limite;
     }
     public double getLimite() {
         return limite;
     }
-
     public void setLimite(double limite) {
         this.limite = limite;
         this.saldo = limite;
     }
-
-    public void comprarNoCredito(Produto produto){
+    public double getSaldo() {
+        return this.saldo;
+    }
+    public boolean comprarNoCredito(Produto produto){
 
         if(produto.getPreco()<= this.saldo) {
             this.saldo -= produto.getPreco();
             System.out.println("Compra realizada!");
-            this.compraRealizada = true;
-
+           return true;
         }
         else {
             System.out.println("Saldo insuficiente!");
-            this.compraRealizada = false;
+            return false;
         }
-
     }
-    public double getSaldo() {
-        return this.saldo;
-    }
-
-
 }
