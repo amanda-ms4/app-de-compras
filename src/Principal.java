@@ -59,6 +59,7 @@ public class Principal {
         listadeprodutos.sort(Comparator.comparing(Produto::getPreco));
         System.out.println(listadeprodutos);
         System.out.println("***********************************");
+
         System.out.println("Saldo do cartão:" + cartaoAmanda.getSaldo());
 
     }
