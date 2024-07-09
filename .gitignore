@@ -2,6 +2,8 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+src/modelos/Produto.java
+
 
 ### Eclipse ###
 .apt_generated
